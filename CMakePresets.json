@@ -1,0 +1,202 @@
+{
+  "version": 8,
+  "configurePresets": [
+    {
+      "name": "ninja",
+      "hidden": true,
+      "generator": "Ninja"
+    },
+    {
+      "name": "compile_commands",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "1"
+      }
+    },
+    {
+      "name": "release",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "debug",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "valgrind",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_TEST_LAUNCHER": "valgrind;--leak-check=full;--show-leak-kinds=all;--track-origins=yes;--error-exitcode=1"
+      }
+    },
+    {
+      "name": "gcc",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc-14",
+        "CMAKE_CXX_COMPILER": "g++-14"
+      }
+    },
+    {
+      "name": "clang",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang-18",
+        "CMAKE_CXX_COMPILER": "clang++-18"
+      }
+    },
+    {
+      "name": "gcc_release",
+      "displayName": "configure gcc release",
+      "inherits": [
+        "ninja",
+        "release",
+        "gcc",
+        "compile_commands"
+      ],
+      "binaryDir": "build/gcc/release"
+    },
+    {
+      "name": "gcc_release_valgrind",
+      "displayName": "configure gcc release valgrind",
+      "inherits": [
+        "ninja",
+        "release",
+        "gcc",
+        "compile_commands",
+        "valgrind"
+      ],
+      "binaryDir": "build/gcc/release"
+    },
+    {
+      "name": "gcc_debug",
+      "displayName": "configure gcc debug",
+      "inherits": [
+        "ninja",
+        "debug",
+        "gcc",
+        "compile_commands"
+      ],
+      "binaryDir": "build/gcc/debug"
+    },
+    {
+      "name": "gcc_debug_valgrind",
+      "displayName": "configure gcc debug valgrind",
+      "inherits": [
+        "ninja",
+        "debug",
+        "gcc",
+        "compile_commands",
+        "valgrind"
+      ],
+      "binaryDir": "build/gcc/debug"
+    },
+    {
+      "name": "clang_release",
+      "displayName": "configure clang release",
+      "inherits": [
+        "ninja",
+        "release",
+        "clang",
+        "compile_commands"
+      ],
+      "binaryDir": "build/clang/release"
+    },
+    {
+      "name": "clang_release_valgrind",
+      "displayName": "configure clang release valgrind",
+      "inherits": [
+        "ninja",
+        "release",
+        "clang",
+        "compile_commands",
+        "valgrind"
+      ],
+      "binaryDir": "build/clang/release"
+    },
+    {
+      "name": "clang_debug",
+      "displayName": "configure clang debug",
+      "inherits": [
+        "ninja",
+        "debug",
+        "clang",
+        "compile_commands"
+      ],
+      "binaryDir": "build/clang/debug"
+    },
+    {
+      "name": "clang_debug_valgrind",
+      "displayName": "configure clang debug valgrind",
+      "inherits": [
+        "ninja",
+        "debug",
+        "clang",
+        "compile_commands",
+        "valgrind"
+      ],
+      "binaryDir": "build/clang/debug"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "gcc_release",
+      "displayName": "build gcc release",
+      "configurePreset": "gcc_release"
+    },
+    {
+      "name": "gcc_debug",
+      "displayName": "build gcc debug",
+      "configurePreset": "gcc_debug"
+    },
+    {
+      "name": "clang_debug",
+      "displayName": "build clang debug",
+      "configurePreset": "clang_debug"
+    },
+    {
+      "name": "clang_release",
+      "displayName": "build clang release",
+      "configurePreset": "clang_release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "gcc_release",
+      "displayName": "test gcc release",
+      "configurePreset": "gcc_release",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "gcc_debug",
+      "displayName": "test gcc debug",
+      "configurePreset": "gcc_debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "clang_release",
+      "displayName": "test clang release",
+      "configurePreset": "clang_release",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "clang_debug",
+      "displayName": "test clang debug",
+      "configurePreset": "clang_debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}
